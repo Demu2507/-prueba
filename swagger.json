@@ -1,0 +1,63 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "CusProdsAndServsProREST",
+    "version" : "1.0.0",
+    "description" : "CusProdsAndServsProREST"
+  },
+  "paths" : {
+    "/customer/bus" : {
+      "post" : {
+        "operationId" : "postBus",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/Response"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a bus",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/Request"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/cusprodsandservsprorest/v1",
+  "definitions" : {
+    "Response" : {
+      "type" : "object",
+      "properties" : {
+        "mensaje" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Request" : {
+      "type" : "object",
+      "properties" : {
+        "customerId" : {
+          "type" : "string"
+        },
+        "productCode" : {
+          "type" : "string"
+        },
+        "ruc" : {
+          "type" : "string"
+        },
+        "currencyCode" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

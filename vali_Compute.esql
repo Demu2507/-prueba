@@ -1,0 +1,24 @@
+
+
+CREATE COMPUTE MODULE vali_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE inputm REFERENCE TO InputRoot.DFDL.ADQCWVC;
+		
+		CREATE LASTCHILD OF OutputRoot DOMAIN ('JSON');
+		CREATE FIELD OutputRoot.JSON.Data.adqcwvc;
+		DECLARE msgOutRef REFERENCE TO OutputRoot.JSON.Data.adqcwvc;
+		
+		set msgOutRef.WVCCODUNICO = inputm.WVCCODUNICO;
+		set msgOutRef.WVCCODPRODUCTO = inputm.WVCCODPRODUCTO;
+		set msgOutRef.WVCRUC = inputm.WVCRUC;
+	    set msgOutRef.WVCCODMON = inputm.WVCCODMON;
+		
+
+		
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

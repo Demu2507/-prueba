@@ -1,0 +1,38 @@
+
+
+CREATE COMPUTE MODULE postBus_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	
+		DECLARE customerid character;
+		DECLARE productcod character;
+		DECLARE ruc character;
+		DECLARE currencyCode character;
+		DECLARE msj character;
+	
+		set customerid = InputRoot.JSON.Data.Request.customerId;
+		set productcod = InputRoot.JSON.Data.Request.productCode;
+		set ruc = InputRoot.JSON.Data.Request.ruc;
+		set currencyCode = InputRoot.JSON.Data.Request.currencyCode;
+		
+		set msj = 'ok';
+		SET OutputRoot.JSON.Data.Response.mensaje = msj;
+	
+		DECLARE refInput REFERENCE TO InputRoot.JSON.Data;
+		DECLARE customerId CHARACTER refInput.customerId;
+		DECLARE productCode CHARACTER refInput.productCode;
+		DECLARE ruc CHARACTER refInput.ruc;
+		DECLARE currencyCode CHARACTER refInput.currencyCode;
+		
+		SET customerId = SPACE(10-LENGTH(SUBSTRING(customerId FROM 1 for 10 )));
+		SET customerId = SPACE(10-LENGTH(SUBSTRING(customerId FROM 1 for 10 )));
+		SET customerId = SPACE(10-LENGTH(SUBSTRING(customerId FROM 1 for 10 )));
+		SET customerId = SPACE(10-LENGTH(SUBSTRING(customerId FROM 1 for 10 )));
+		
+		DECLARE tramac CHARACTER;
+		set tramac = customerId || productCode || productCode || ruc || currencyCode;
+		set OutputRoot.Properties.ContentType = 'text/plain';
+	
+		RETURN TRUE;
+	END;
+END MODULE;
